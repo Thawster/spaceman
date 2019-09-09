@@ -3,7 +3,7 @@ import os
 
 # global variables 
 alphabet = "abcdefghijklmnopqrstuvwxyz" 
-words = []
+wordlist = []
 
 def load_word():
     f = open('words.txt', 'r')
@@ -27,7 +27,7 @@ def create_word(secret_word, index_guessed):
                         if index !=int(index_guessed[0]) and word[index] == secret_word[int(index_guessed[0])]:
                             add_to_list = False
                     if add_to_list:
-                        words.append(word)
+                        wordlist.append(word)
     f.close()
  
 def create_index_list(secret_word, letter_guessed):
@@ -53,8 +53,8 @@ def check_new_word(secret_word, letters_guessed, new_word):
     return True
 
 def randomize_word(secret_word, letters_guessed):
-    shuffle(words)
-    for word in words:
+    shuffle(wordlist)
+    for word in wordlist:
         if word == secret_word:
             pass
         elif check_new_word(secret_word, letters_guessed, word):
@@ -124,7 +124,7 @@ def spaceman(secret_word):
 
         if is_guess_in_word(guess, secret_word):
             print("Your Guess appears in the word!")
-            if len(words) == 0:
+            if len(wordlist) == 0:
                 create_word(secret_word, create_index_list(secret_word, guess))
             secret_word = randomize_word(secret_word, letters_guessed)
         else:
