@@ -37,6 +37,21 @@ def create_index_list(secret_word, letter_guessed):
             index_list.append(index)
     return index_list
 
+def get_guessed_word(secret_word, letters_guessed):
+    guessed_word = ""
+    for letters in secret_word:
+        if letters in letters_guessed:
+            guessed_word += letters
+        else: 
+            guessed_word += '_'
+    return guessed_word
+
+def is_guess_in_word(guess, secret_word):
+    if guess in secret_word:
+        return True
+    else:
+        return False
+
 def check_new_word(secret_word, letters_guessed, new_word):
     if len(secret_word) != len(new_word):
         return False
@@ -70,23 +85,6 @@ def is_word_guessed(secret_word, letters_guessed):
             return False
     return True #Game Over
 
-
-def get_guessed_word(secret_word, letters_guessed):
-    guessed_word = ""
-    for letters in secret_word:
-        if letters in letters_guessed:
-            guessed_word += letters
-        else: 
-            guessed_word += '_'
-    return guessed_word
-
-def is_guess_in_word(guess, secret_word):
-    if guess in secret_word:
-        return True
-    else:
-        return False
-
-
 def not_guessed_string(guessed_letters):
     not_guessed_string=""
     for letters in alphabet:
@@ -95,7 +93,6 @@ def not_guessed_string(guessed_letters):
         else:
             not_guessed_string += letters
     return not_guessed_string
-
 
 def spaceman(secret_word):
     guesses = len(secret_word)
